@@ -9,7 +9,10 @@
 import UIKit
 
 class CreateremindViewController: UIViewController {
-
+    @IBOutlet var remindTextView: UITextView!
+    var remindText: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +23,18 @@ class CreateremindViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        remindText = remindTextView.text
+       // if (segue.identifier == "totextDatesetting") {
+            // SecondViewControllerクラスをインスタンス化してsegue（画面遷移）で値を渡せるようにバンドルする
+            let secondView : DatesettingViewController = segue.destinationViewController as! DatesettingViewController
+            // secondView（バンドルされた変数）に受け取り用の変数を引数とし_paramを渡す（_paramには渡したい値）
+            // この時DatesettingViewControllerにて受け取る同型の変数を用意しておかないとエラーになる
+            secondView.remindText = remindTextView.text
+        //}
+    }
+
     
 
     /*
